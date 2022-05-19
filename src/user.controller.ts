@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 // import { PostService } from './post.service';
 // import { User as UserModel, Post as PostModel } from '@prisma/client';
 import { User as UserModel } from '@prisma/client';
-import { get } from 'http';
+import { CreateUserDto, UpdateUserDto } from './dto/user.dto';
 
 @Controller('user')
 export class UserController {
@@ -22,11 +22,7 @@ export class UserController {
   @Post('create')
   async signupUser(
     @Body()
-    userData: {
-      full_name: string;
-      email: string;
-      phone_number: string;
-    },
+    userData: CreateUserDto,
   ): Promise<UserModel> {
     return this.userService.createUser(userData);
   }
@@ -40,13 +36,7 @@ export class UserController {
   async updateUser(
     @Param('id') id: string,
     @Body()
-    userData: {
-      full_name?: string;
-      email?: string;
-      phone_number?: string;
-      type_of_school?: string;
-      state_name?: string;
-    },
+    userData: UpdateUserDto,
   ): Promise<UserModel> {
     return this.userService.updateUser({
       where: { id: Number(id) },
