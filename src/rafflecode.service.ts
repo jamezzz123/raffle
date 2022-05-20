@@ -31,9 +31,11 @@ export class RaffleService {
     });
   }
 
-  async createUser(data: Prisma.RaffleDrawCreateInput): Promise<RaffleDraw> {
+  async createRaffle(): Promise<RaffleDraw> {
     return this.prisma.raffleDraw.create({
-      data,
+      data: {
+        code: (Math.random() + 1).toString(36).substring(5),
+      },
     });
   }
 

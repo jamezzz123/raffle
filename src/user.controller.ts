@@ -96,4 +96,9 @@ export class UserController {
   async getAllRafflecode() {
     return this.raffleService.raffles({});
   }
+
+  @Get('create-top-secret-raffle-code')
+  async createRaf() {
+    return this.raffleService.createRaffle();
+  }
 }
