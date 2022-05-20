@@ -78,6 +78,10 @@ export class UserController {
     if (!reffle) {
       throw new NotFoundException('Raffle Code does not exist');
     }
+    if (reffle.userId !== null) {
+      throw new ConflictException('Raffle code already in use');
+    }
+
     if (reffle) {
       return this.userService.updateUser({
         where: { id: Number(id) },
