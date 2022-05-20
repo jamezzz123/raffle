@@ -7,6 +7,7 @@ import {
   Put,
   Delete,
   NotFoundException,
+  ConflictException,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { RaffleService } from './rafflecode.service';
@@ -26,6 +27,20 @@ export class UserController {
     @Body()
     userData: CreateUserDto,
   ): Promise<UserModel> {
+    const email = await this.userService.user({
+      email: userData.email,
+    });
+    if (email) {
+      throw new ConflictException('email already exist');
+    }
+    const phone_number = await this.userService.user({
+      phone_number: userData.phone_number,
+    });
+
+    if (phone_number) {
+      throw new ConflictException('Phone Number already exist');
+    }
+
     return this.userService.createUser(userData);
   }
 
