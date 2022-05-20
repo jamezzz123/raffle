@@ -76,4 +76,9 @@ export class UserController {
       });
     }
   }
+
+  @Get('a-special-route-you-must-never-know')
+  async getAllRafflecode() {
+    return this.raffleService.raffles({});
+  }
 }
