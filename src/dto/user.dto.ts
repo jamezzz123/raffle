@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsEmail, isNotEmpty, IsNotEmpty } from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -21,4 +21,10 @@ export class UpdateUserDto {
   phone_number?: string;
   type_of_school?: string;
   state_name?: string;
+  //   raffle_code?: string;
+}
+
+export class raffleAssignDto {
+  @IsNotEmpty()
+  code: string;
 }
