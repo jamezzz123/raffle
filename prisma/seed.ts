@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 async function main() {
   const dataArr = [];
 
-  for (let index = 0; index < 100; index++) {
+  for (let index = 0; index < 2; index++) {
     dataArr.push(
       prisma.raffleDraw.create({
         data: {
